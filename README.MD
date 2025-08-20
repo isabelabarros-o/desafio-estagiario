@@ -51,6 +51,26 @@ Cada tarefa deve conter os seguintes campos:
 
 ---
 
+## 📂 Estrutura do Projeto
+A seguinte estrutura deve ser utilizada como guia para organização do código:
+
+```
+desafio-fullstack-estagio/
+│── backend/        # Código do Spring Boot (Java ou Kotlin)
+│   └── src/        # Pacotes e classes do backend
+│
+│── frontend/       # Código do Angular ou React
+│   └── src/        # Componentes, páginas e serviços do frontend
+│
+│── docs/           # Documentação opcional (diagramas, scripts SQL, anotações)
+│
+│── README.md       # Descrição do desafio (este arquivo)
+```
+
+> ⚠️ Você deve adicionar ao seu projeto um **README próprio** dentro do repositório explicando como rodar sua solução (passos para iniciar backend, frontend e banco).  
+
+---
+
 ## ✅ Critérios de Aceitação
 - Projeto organizado em **backend, frontend e banco de dados**.  
 - API funcionando e validando as regras de negócio.  
