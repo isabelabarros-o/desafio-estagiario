@@ -1,105 +1,73 @@
-# 📌 Desafio Técnico – Estagiário Full Stack
+# 📝 Sistema de Gestão de Tarefas - Full Stack
 
-## 🎯 Desafio
-Este é um desafio técnico para **Estagiário de Desenvolvimento de Software Full Stack**.  
-O objetivo é avaliar sua capacidade de trabalhar com **Spring Boot (Java ou Kotlin)**, **Angular ou React** e banco de dados relacional.  
+Este projeto é uma aplicação completa de gerenciamento de tarefas (To-Do List), desenvolvida para demonstrar competências em desenvolvimento Full Stack, integração de sistemas e regras de negócio automatizadas. O projeto foi estruturado com um backend em **Spring Boot** e um frontend dinâmico em **React**.
 
-Você deve desenvolver uma aplicação simples de **Gestão de Tarefas**, seguindo as regras descritas abaixo.  
+## 🚀 Tecnologias Utilizadas
 
----
+### **Backend**
+* **Java 21** & **Spring Boot 3**
+* **Spring Data JPA**: Para persistência de dados
+* **H2 Database**: Banco de dados em memória para execução ágil
+* **Hibernate**: Mapeamento objeto-relacional (ORM)
 
-## 🛠️ Tecnologias Obrigatórias
-- **Backend**: Spring Boot (Java ou Kotlin)  
-- **Frontend**: Angular ou React  
-- **Banco de Dados**: MySQL, PostgreSQL ou H2 (em memória)  
-
----
-
-## 📋 Requisitos do Sistema
-
-### Estrutura da Tarefa
-Cada tarefa deve conter os seguintes campos:
-- **id** → gerado automaticamente  
-- **titulo** → obrigatório, até 100 caracteres  
-- **descricao** → opcional, até 255 caracteres  
-- **status** → valores possíveis: `PENDENTE`, `EM_ANDAMENTO`, `CONCLUIDA`  
-- **dataCriacao** → preenchida automaticamente no cadastro  
-- **dataConclusao** → preenchida automaticamente quando status for `CONCLUIDA`  
+### **Frontend**
+* **React**: Interface de usuário declarativa
+* **Axios**: Cliente HTTP para comunicação com a API REST
 
 ---
 
-### Funcionalidades do Backend
-- `POST /tarefas` → cadastrar tarefa  
-- `GET /tarefas` → listar todas as tarefas  
-- `PUT /tarefas/{id}` → atualizar status ou informações da tarefa  
-- `DELETE /tarefas/{id}` → excluir tarefa  
+## ⚙️ Regras de Negócio Implementadas
+
+O sistema segue rigorosamente os requisitos técnicos solicitados:
+* **Validação de Dados**: O título da tarefa é obrigatório (máximo de 100 caracteres).
+* **Datas Automáticas**: 
+    * A `dataCriacao` é preenchida automaticamente no momento da inserção.
+    * A `dataConclusao` é registrada automaticamente quando o status é alterado para **CONCLUIDA**.
+* **Segurança na Exclusão**: O sistema bloqueia a exclusão de tarefas que estejam com o status **EM_ANDAMENTO**.
 
 ---
 
-### Funcionalidades do Frontend
-- Tela com listagem de todas as tarefas  
-- Formulário para adicionar nova tarefa  
-- Ação para editar/atualizar status da tarefa  
-- Botão para excluir tarefa  
+## 🛠️ Como Executar o Projeto
 
----
+### **1. Pré-requisitos**
+* JDK 17 ou superior.
+* Node.js (LTS).
+* Maven.
 
-### Regras de Negócio
-1. O **título é obrigatório** e não pode ultrapassar 100 caracteres.  
-2. Quando a tarefa for marcada como **CONCLUIDA**, o campo `dataConclusao` deve ser preenchido com a data/hora atual.  
-3. Não é permitido **excluir uma tarefa com status `EM_ANDAMENTO`**.  
+### **2. Passo a Passo**
 
----
+#### **Backend**
+1. Navegue até a pasta `backend`.
+2. Execute o servidor:
+   ```bash
+   ./mvnw spring-boot:run
+   ´´´
+3. O servidor estará disponível em `http://localhost:8080`.
+4. Console do banco H2: `http://localhost:8080/h2-console`
+   * **JDBC URL**: `jdbc:h2:mem:testdb`
+   * **Usuário**: `admin` | **Senha**: (vazio)
 
-## 📂 Estrutura do Projeto
-A seguinte estrutura deve ser utilizada como guia para organização do código:
+#### **Frontend**
 
-```
-desafio-fullstack-estagio/
-│── backend/        # Código do Spring Boot (Java ou Kotlin)
-│   └── src/        # Pacotes e classes do backend
-│
-│── frontend/       # Código do Angular ou React
-│   └── src/        # Componentes, páginas e serviços do frontend
-│
-│── docs/           # Documentação opcional (diagramas, scripts SQL, anotações)
-│
-│── README.md       # Descrição do desafio (este arquivo)
-```
+1. Navegue até a pasta `frontend`.
+2. Instale as dependências:
+   ```bash
+   npm install
+3. Inicie a aplicação:
+    ```bash
+    npm start
+    ```
 
-> ⚠️ Você deve adicionar ao seu projeto um **README próprio** dentro do repositório explicando como rodar sua solução (passos para iniciar backend, frontend e banco).  
+A interface abrirá automaticamente em http://localhost:3000.
 
----
+📂 Estrutura de Arquivos
 
-## ✅ Critérios de Aceitação
-- Projeto organizado em **backend, frontend e banco de dados**.  
-- API funcionando e validando as regras de negócio.  
-- Frontend consumindo a API.  
-- Fluxo básico de cadastro → listagem → atualização → exclusão funcionando.  
-- Instruções claras de como rodar a aplicação.  
 
----
+    ├── src/main/java/backend/ # Código fonte da API Java/Spring Boot
+    ├── frontend/              # Interface React.js
+    └── README.md              # Documentação do projeto
 
-## ❌ Critérios de Reprovação
-- Projeto não roda ou não possui instruções de execução.  
-- Regras de negócio não foram implementadas.  
-- Frontend não consome a API (ex.: apenas mocks).  
-- Código confuso ou sem organização mínima.  
 
----
+👩‍💻 Autora
 
-## 🚀 Como Entregar
-1. Faça um **fork** deste repositório.  
-2. Implemente a solução no **seu fork**.  
-3. Garanta que seu projeto contenha um **README próprio com instruções de execução** (como iniciar backend, frontend e banco de dados).  
-4. Envie o **link do seu repositório** para avaliação.  
-
----
-
-## 📌 Observações
-- Não é necessário implementar autenticação (JWT, OAuth, etc).  
-- Foque em clareza, organização e funcionamento.  
-
----
-
-Boa sorte 🚀  
+    Isabela Barros de Oliveira 
