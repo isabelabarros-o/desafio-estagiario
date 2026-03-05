@@ -5,6 +5,7 @@ import backend.service.TarefaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tarefas")
@@ -27,11 +28,14 @@ public class TarefaController {
         return ResponseEntity.ok(tarefaService.save(tarefa));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+    @PutMapping("/{id}/status")
+    public ResponseEntity<?> atualizarStatus(@PathVariable Long id, @RequestBody Map<String, String> payload) {
         try {
-            return ResponseEntity.ok(tarefaService.update(id, tarefa));
-        } catch (RuntimeException e) {
+            String novoStatusStr = payload.get("status");
+            // Apenas delega para o service cuidar da lógica
+            Tarefa tarefaAtualizada = tarefaService.atualizarStatus(id, novoStatusStr);
+            return ResponseEntity.ok(tarefaAtualizada);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -27,29 +27,36 @@ public class TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa update(Long id, Tarefa dadosAtualizados) {
-        Tarefa tarefaExistente = tarefaRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com ID: " + id));
+    public Tarefa atualizarStatus(Long id, String novoStatusStr) {
+        Tarefa tarefa = tarefaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com ID: " + id));
 
-        if (dadosAtualizados.getTitulo() == null || dadosAtualizados.getTitulo().isBlank()) {
-            throw new RuntimeException("O título é obrigatório.");
+        try {
+            StatusTarefa novoStatus = StatusTarefa.valueOf(novoStatusStr.toUpperCase());
+
+            if (StatusTarefa.CONCLUIDA.equals(novoStatus)) {
+                tarefa.setDataConclusao(LocalDateTime.now());
+            } else {
+                tarefa.setDataConclusao(null);
+            }
+
+            tarefa.setStatus(novoStatus);
+
+            return tarefaRepository.save(tarefa);
+
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Status '" + novoStatusStr + "' é inválido.");
         }
+    }
 
-        if (StatusTarefa.CONCLUIDA.equals(dadosAtualizados.getStatus()) && 
-            !StatusTarefa.CONCLUIDA.equals(tarefaExistente.getStatus())) {
-            tarefaExistente.setDataConclusao(LocalDateTime.now());
-        }
-
-        tarefaExistente.setTitulo(dadosAtualizados.getTitulo());
-        tarefaExistente.setDescricao(dadosAtualizados.getDescricao());
-        tarefaExistente.setStatus(dadosAtualizados.getStatus());
-
-        return tarefaRepository.save(tarefaExistente);
+    public Tarefa findById(Long id) {
+        return tarefaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com ID: " + id));
     }
 
     public void delete(Long id) {
         Tarefa tarefa = tarefaRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
 
         if (StatusTarefa.EM_ANDAMENTO.equals(tarefa.getStatus())) {
             throw new RuntimeException("Não é permitido excluir uma tarefa com status EM_ANDAMENTO.");

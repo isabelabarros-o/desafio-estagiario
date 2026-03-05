@@ -1,38 +1,280 @@
-.App {
+:root {
+  --bg-app: #F8FBFF;
+  --bg-card: #E1E9EE;
+  --blue-header: #0D47A1;
+  --btn-blue: #7FB3E6;
+}
+
+body {
+  background-color: var(--bg-app);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+.app-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--blue-header);
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #82B1FF;
+  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.column {
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.column-header {
+  padding: 15px;
   text-align: center;
+  font-weight: bold;
+  color: rgb(4, 0, 0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.task-item {
+  background: rgba(255, 255, 255, 0.4);
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.task-item:hover {
+  background: rgba(255, 255, 255, 0.8);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-criar {
+  background-color: var(--btn-blue);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.modal-content {
+  background: #CFD8DC;
+  padding: 30px;
+  border-radius: 20px;
+  width: 450px;
+  position: relative;
+
+}
+
+
+
+.close-x {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+
+
+.modal-dates {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 12px;
+  font-style: italic;
+  color: #555;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.modal-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.btn-salvar {
+  background-color: var(--blue-header);
   color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 300px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-status {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-size: 0.8rem;
+}
+
+.btn-status:hover {
+  opacity: 0.8;
+}
+
+.btn-status.pendente {
+  background-color: #DD6755;
+}
+
+.btn-status.andamento {
+  background-color: #F7EF99;
+  color: #333;
+}
+
+.btn-status.concluida {
+  background-color: #478978;
+}
+
+.btn-excluir {
+  background-color: #757575;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-dropdown {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  min-width: 150px;
+}
+
+.btn-dropdown.pendente {
+  background-color: #DD6755;
+}
+
+.btn-dropdown.em_andamento {
+  background-color: #F7EF99;
+  color: #333;
+}
+
+.btn-dropdown.concluida {
+  background-color: #478978;
+}
+
+.dropdown-content {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-content button:hover {
+  background-color: #ddd;
+}
+
+.btn-excluir-modal {
+  background: #E57373;
+  border: 1px solid #E57373;
+  color: #F8FBFF;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
 }

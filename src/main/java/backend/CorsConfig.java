@@ -1,4 +1,4 @@
-package backend; // Use o seu pacote correto
+package backend;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

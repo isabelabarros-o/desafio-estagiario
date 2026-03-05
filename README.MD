@@ -1,6 +1,6 @@
 # 📝 Sistema de Gestão de Tarefas - Full Stack
 
-Este projeto é uma aplicação completa de gerenciamento de tarefas (To-Do List), desenvolvida para demonstrar competências em desenvolvimento Full Stack, integração de sistemas e regras de negócio automatizadas. O projeto foi estruturado com um backend em **Spring Boot** e um frontend dinâmico em **React**.
+Este projeto é uma aplicação completa de gerenciamento de tarefas (To-Do List), desenvolvida para o Desafio Técnico – Estagiário Full Stack. O projeto foi estruturado com um backend em **Spring Boot** e um frontend dinâmico em **React**.
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -44,8 +44,9 @@ O sistema segue rigorosamente os requisitos técnicos solicitados:
    ´´´
 3. O servidor estará disponível em `http://localhost:8080`.
 4. Console do banco H2: `http://localhost:8080/h2-console`
-   * **JDBC URL**: `jdbc:h2:mem:testdb`
+   * **JDBC URL**: `jdbc:h2:file:~/banco_tarefas`
    * **Usuário**: `admin` | **Senha**: (vazio)
+   -> O URL foi alterado do padrão para `jdbc:h2:file:~/banco_tarefas`, assim as tarefas são guardadas após a página ser recarregada!
 
 #### **Frontend**
 
@@ -63,7 +64,7 @@ A interface abrirá automaticamente em http://localhost:3000.
 📂 Estrutura de Arquivos
 
 
-    ├── src/main/java/backend/ # Código fonte da API Java/Spring Boot
+    ├── src/main/java/backend/ # Model, Service e Controller
     ├── frontend/              # Interface React.js
     └── README.md              # Documentação do projeto
 
