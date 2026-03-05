@@ -46,7 +46,7 @@ O sistema segue rigorosamente os requisitos técnicos solicitados:
 4. Console do banco H2: `http://localhost:8080/h2-console`
    * **JDBC URL**: `jdbc:h2:file:~/banco_tarefas`
    * **Usuário**: `admin` | **Senha**: (vazio)
-   -> O URL foi alterado do padrão para `jdbc:h2:file:~/banco_tarefas`, assim as tarefas são guardadas após a página ser recarregada!
+   * O URL foi alterado do padrão para `jdbc:h2:file:~/banco_tarefas`, assim as tarefas são guardadas após a página ser recarregada!
 
 #### **Frontend**
 
